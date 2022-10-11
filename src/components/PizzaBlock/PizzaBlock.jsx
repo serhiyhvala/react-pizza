@@ -26,7 +26,10 @@ const PizzaBlock = ({title, price, imageUrl, sizes, types}) => {
                             <li
                                 onClick={() => setTypePizza(typeId)}
                                 className={typePizza === typeId ? 'active' : ''}
-                            >{typeNames[typeId]}</li>
+                                key={typeId}
+                            >
+                                {typeNames[typeId]}
+                            </li>
                         ))
                     }
                 </ul>
@@ -36,6 +39,7 @@ const PizzaBlock = ({title, price, imageUrl, sizes, types}) => {
                             <li
                                 onClick={() => setSizePizza(i)}
                                 className={sizePizza === i ? 'active' : ''}
+                                key={i}
                             >
                                 {size}
                             </li>
