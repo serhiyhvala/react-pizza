@@ -11,7 +11,7 @@ const Sort = () => {
 		setVisiblePopUp(false)
 	}
 	return (
-		<div className='sort'>
+		<div className='sort' onClick={() => setVisiblePopUp(!visiblePopUp)}>
 			<div className='sort__label'>
 				<img src={sortLabel} alt='' />
 				<b>Sort by:</b>
