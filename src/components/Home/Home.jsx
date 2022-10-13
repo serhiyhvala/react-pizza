@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Categories from '../Categories/Categories'
 import Sort from '../Sort/Sort'
 import Loader from '../Loader/Loader'
 import PizzaBlock from '../PizzaBlock/PizzaBlock'
 import Pagination from '../Pagination/Pagination'
+import { SearchContext } from '../../App'
 
-const Home = ({ searchValue }) => {
+const Home = () => {
 	const [items, setItems] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 	const [activeClass, setActiveClass] = useState(0)
@@ -14,6 +15,7 @@ const Home = ({ searchValue }) => {
 		name: 'popularity',
 		sortType: 'rating'
 	})
+	const { searchValue } = useContext(SearchContext)
 	useEffect(() => {
 		setIsLoading(true)
 
