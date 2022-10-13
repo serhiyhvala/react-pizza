@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { sort } from '../../assets/data/sort'
 import sortLabel from '../../assets/img/sortLabel.svg'
 
-const Sort = () => {
+const Sort = ({ value, setSort }) => {
 	const [visiblePopUp, setVisiblePopUp] = useState(false)
-	const [pizzaSort, setPizzaSort] = useState(0)
 
 	const onClickSetItem = i => {
-		setPizzaSort(i)
+		setSort(i)
 		setVisiblePopUp(false)
 	}
 	return (
@@ -15,20 +14,18 @@ const Sort = () => {
 			<div className='sort__label'>
 				<img src={sortLabel} alt='' />
 				<b>Sort by:</b>
-				<span onClick={() => setVisiblePopUp(!visiblePopUp)}>
-					{sort[pizzaSort]}
-				</span>
+				<span onClick={() => setVisiblePopUp(!visiblePopUp)}>{value.name}</span>
 			</div>
 			{visiblePopUp && (
 				<div className='sort__popup'>
 					<ul>
-						{sort.map((sort, i) => (
+						{sort.map((obj, i) => (
 							<li
-								onClick={() => onClickSetItem(i)}
-								className={pizzaSort === i ? 'active' : ''}
+								onClick={() => onClickSetItem(obj)}
+								className={value.name === obj.name ? 'active' : ''}
 								key={i}
 							>
-								{sort}
+								{obj.name}
 							</li>
 						))}
 					</ul>

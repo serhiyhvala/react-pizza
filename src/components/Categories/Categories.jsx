@@ -1,24 +1,22 @@
-import React, {useState} from 'react';
-import {categories} from "../../assets/data/categories";
+import React from 'react'
+import { categories } from '../../assets/data/categories'
 
-const Categories = () => {
-    const [activeClass, setActiveClass] = useState(0)
+const Categories = ({ value, onClickCategory }) => {
+	return (
+		<div className='categories'>
+			<ul>
+				{categories.map((category, i) => (
+					<li
+						onClick={() => onClickCategory(i)}
+						className={value === i ? 'active' : ''}
+						key={category.id}
+					>
+						{category.name}
+					</li>
+				))}
+			</ul>
+		</div>
+	)
+}
 
-    return (
-        <div className="categories">
-            <ul>
-                {
-                    categories.map((category, i) => (
-                        <li onClick={() => setActiveClass(i)}
-                            className={activeClass === i ? 'active' : ''}
-                            key={category.id}>
-                            {category.name}
-                        </li>
-                    ))
-                }
-            </ul>
-        </div>
-    );
-};
-
-export default Categories;
+export default Categories
