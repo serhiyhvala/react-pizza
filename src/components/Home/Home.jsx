@@ -3,11 +3,13 @@ import Categories from '../Categories/Categories'
 import Sort from '../Sort/Sort'
 import Loader from '../Loader/Loader'
 import PizzaBlock from '../PizzaBlock/PizzaBlock'
+import Pagination from '../Pagination/Pagination'
 
 const Home = ({ searchValue }) => {
 	const [items, setItems] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 	const [activeClass, setActiveClass] = useState(0)
+	const [currentPage, setCurrentPage] = useState(1)
 	const [pizzaSort, setPizzaSort] = useState({
 		name: 'popularity',
 		sortType: 'rating'
@@ -21,7 +23,7 @@ const Home = ({ searchValue }) => {
 		const search = searchValue ? `&search=${searchValue}` : ''
 
 		fetch(
-			`https://63455cb939ca915a69fcd328.mockapi.io/items?${category}${search}&sortBy=${sortBy}&order=${order}`
+			`https://63455cb939ca915a69fcd328.mockapi.io/items?page=${currentPage}&limit=4&${category}${search}&sortBy=${sortBy}&order=${order}`
 		)
 			.then(res => res.json())
 			.then(json => {
@@ -29,7 +31,7 @@ const Home = ({ searchValue }) => {
 				setIsLoading(false)
 			})
 		window.scrollTo(0, 0)
-	}, [activeClass, pizzaSort, searchValue])
+	}, [activeClass, pizzaSort, searchValue, currentPage])
 	console.log(searchValue)
 	return (
 		<div className='container'>
@@ -46,6 +48,7 @@ const Home = ({ searchValue }) => {
 					? [...new Array(6)].map((_, index) => <Loader key={index} />)
 					: items.map(obj => <PizzaBlock key={obj.id} {...obj} />)}
 			</div>
+			<Pagination onChangePage={number => setCurrentPage(number)} />
 		</div>
 	)
 }
