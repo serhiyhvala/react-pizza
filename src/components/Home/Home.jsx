@@ -4,7 +4,7 @@ import Sort from '../Sort/Sort'
 import Loader from '../Loader/Loader'
 import PizzaBlock from '../PizzaBlock/PizzaBlock'
 
-const Home = () => {
+const Home = ({ searchValue }) => {
 	const [items, setItems] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 	const [activeClass, setActiveClass] = useState(0)
@@ -29,7 +29,7 @@ const Home = () => {
 			})
 		window.scrollTo(0, 0)
 	}, [activeClass, pizzaSort])
-	console.log(pizzaSort)
+	console.log(searchValue)
 	return (
 		<div className='container'>
 			<div className='content__top'>
@@ -43,7 +43,13 @@ const Home = () => {
 			<div className='content__items'>
 				{isLoading
 					? [...new Array(6)].map((_, index) => <Loader key={index} />)
-					: items.map(obj => <PizzaBlock key={obj.id} {...obj} />)}
+					: items
+							.filter(obj =>
+								obj.title
+									.toLocaleLowerCase()
+									.includes(searchValue.toLocaleLowerCase())
+							)
+							.map(obj => <PizzaBlock key={obj.id} {...obj} />)}
 			</div>
 		</div>
 	)
