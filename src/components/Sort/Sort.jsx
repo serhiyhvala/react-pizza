@@ -33,23 +33,25 @@ const sortList = [
 ]
 
 const Sort = () => {
-  const dispatch = useDispatch()
+  const [visiblePopup, setVisiblePopup] = useState(false)
   const sort = useSelector(state => state.filter.sort)
-  const [visiblePopUp, setVisiblePopUp] = useState(false)
+  const dispatch = useDispatch()
 
   const onClickSetItem = obj => {
     dispatch(setSort(obj))
-    setVisiblePopUp(false)
+    setVisiblePopup(false)
   }
 
+  const togglePopupVisibility = () => setVisiblePopup(!visiblePopup);
+
   return (
-      <div className='sort' onClick={() => setVisiblePopUp(!visiblePopUp)}>
+      <div className='sort' onClick={togglePopupVisibility}>
         <div className='sort__label'>
           <img src={sortLabel} alt=''/>
           <b>Sort by:</b>
-          <span onClick={() => setVisiblePopUp(!visiblePopUp)}>{sort.name}</span>
+          <span onClick={togglePopupVisibility}>{sort.name}</span>
         </div>
-        {visiblePopUp && (
+        {visiblePopup && (
             <div className='sort__popup'>
               <ul>
                 {sortList.map((obj, i) => (
