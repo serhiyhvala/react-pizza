@@ -23,22 +23,29 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
-    setIsLoading(true)
-
-    const sortBy = sortType.replace('-', '')
-    const order = sortType.includes('-') ? 'asc' : 'desc'
-    const category = categoryId > 0 ? `category=${categoryId}` : ''
-    const search = searchValue ? `&search=${searchValue}` : ''
-
-    fetch(
-        `${MOCK_API_ENDPOINT}/items?page=${currentPage}&limit=4&${category}${search}&sortBy=${sortBy}&order=${order}`
-    )
-        .then(res => res.json())
-        .then(json => {
-          setItems(json)
-        })
-        .finally(() => setIsLoading(false))
     window.scrollTo(0, 0)
+  }, []);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      setIsLoading(true)
+
+      const sortBy = sortType.replace('-', '')
+      const order = sortType.includes('-') ? 'asc' : 'desc'
+      const category = categoryId > 0 ? `category=${categoryId}` : ''
+      const search = searchValue ? `&search=${searchValue}` : ''
+
+      await fetch(
+          `${MOCK_API_ENDPOINT}/items?page=${currentPage}&limit=4&${category}${search}&sortBy=${sortBy}&order=${order}`
+      )
+          .then(res => res.json())
+          .then(json => {
+            setItems(json)
+          })
+          .finally(() => setIsLoading(false))
+    }
+
+    fetchItems();
   }, [categoryId, sortType, searchValue, currentPage])
 
   const onClickCategory = id => {
