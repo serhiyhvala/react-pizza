@@ -50,7 +50,9 @@ const Home = () => {
 					? [...new Array(6)].map((_, index) => <Loader key={index} />)
 					: items.map(obj => <PizzaBlock key={obj.id} {...obj} />)}
 			</div>
-			<Pagination onChangePage={number => setCurrentPage(number)} />
+			{activeClass === 0 && (
+				<Pagination onChangePage={number => setCurrentPage(number)} />
+			)}
 		</div>
 	)
 }
