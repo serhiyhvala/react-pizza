@@ -27,22 +27,20 @@ const categories = [
   },
 ]
 
-const Categories = ({value, onClickCategory}) => {
-  return (
-      <div className='categories'>
-        <ul>
-          {categories.map((category, i) => (
-              <li
-                  onClick={() => onClickCategory(i)}
-                  className={value === i ? 'active' : ''}
-                  key={category.id}
-              >
-                {category.name}
-              </li>
-          ))}
-        </ul>
-      </div>
-  )
-}
+const Categories = ({ value, onClickCategory }) => (
+    <div className='categories'>
+      <ul>
+        {categories.map((category, i) => (
+            <li
+                onClick={() => onClickCategory(i)}
+                className={value === i ? 'active' : ''}
+                key={category.id}
+            >
+              {category.name}
+            </li>
+        ))}
+      </ul>
+    </div>
+)
 
 export default Categories

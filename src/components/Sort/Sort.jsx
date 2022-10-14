@@ -39,6 +39,7 @@ const Sort = () => {
     dispatch(setSort(obj))
     setVisiblePopUp(false)
   }
+
   return (
       <div className='sort' onClick={() => setVisiblePopUp(!visiblePopUp)}>
         <div className='sort__label'>

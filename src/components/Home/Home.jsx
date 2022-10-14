@@ -40,6 +40,7 @@ const Home = () => {
 			})
 		window.scrollTo(0, 0)
 	}, [categoryId, sortType, searchValue, currentPage])
+
 	return (
 		<div className='container'>
 			<div className='content__top'>
