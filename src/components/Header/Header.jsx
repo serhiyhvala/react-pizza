@@ -1,9 +1,10 @@
 import React from 'react'
-
 import {Link} from 'react-router-dom'
+
+import Search from '../Search/Search'
+
 import logo from '../../assets/img/pizza-logo.svg'
 import {ReactComponent as Cart} from '../../assets/img/cart.svg'
-import Search from '../Search/Search'
 
 const Header = () => (
     <div className='header'>

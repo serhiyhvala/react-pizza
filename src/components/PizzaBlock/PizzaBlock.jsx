@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 import { ReactComponent as Plus } from '../../assets/img/plus.svg'
 
 const PizzaBlock = ({ title, price, imageUrl, sizes, types }) => {

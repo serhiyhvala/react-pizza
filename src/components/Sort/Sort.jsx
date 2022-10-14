@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
-import sortLabel from '../../assets/img/sortLabel.svg'
 import {useDispatch, useSelector} from 'react-redux'
+
 import {setSort} from '../../redux/slices/fliterSlice'
+
+import sortLabel from '../../assets/img/sortLabel.svg'
 
 const sortList = [
   {
