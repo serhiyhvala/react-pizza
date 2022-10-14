@@ -1,4 +1,4 @@
-export const sort = [
+export const sortList = [
 	{
 		name: 'popularity (DESC)',
 		sortType: 'rating'

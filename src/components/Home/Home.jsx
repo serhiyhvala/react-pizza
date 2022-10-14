@@ -5,23 +5,29 @@ import Loader from '../Loader/Loader'
 import PizzaBlock from '../PizzaBlock/PizzaBlock'
 import Pagination from '../Pagination/Pagination'
 import { SearchContext } from '../../App'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCategoryId } from '../../redux/slices/fliterSlice'
 
 const Home = () => {
+	const { categoryId, sort } = useSelector(state => state.filter)
+	const sortType = sort.sortType
+	const dispatch = useDispatch()
+
+	const { searchValue } = useContext(SearchContext)
 	const [items, setItems] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
-	const [activeClass, setActiveClass] = useState(0)
 	const [currentPage, setCurrentPage] = useState(1)
-	const [pizzaSort, setPizzaSort] = useState({
-		name: 'popularity',
-		sortType: 'rating'
-	})
-	const { searchValue } = useContext(SearchContext)
+
+	const onClickCategory = id => {
+		dispatch(setCategoryId(id))
+	}
+
 	useEffect(() => {
 		setIsLoading(true)
 
-		const sortBy = pizzaSort.sortType.replace('-', '')
-		const order = pizzaSort.sortType.includes('-') ? 'asc' : 'desc'
-		const category = activeClass > 0 ? `category=${activeClass}` : ''
+		const sortBy = sortType.replace('-', '')
+		const order = sortType.includes('-') ? 'asc' : 'desc'
+		const category = categoryId > 0 ? `category=${categoryId}` : ''
 		const search = searchValue ? `&search=${searchValue}` : ''
 
 		fetch(
@@ -33,16 +39,12 @@ const Home = () => {
 				setIsLoading(false)
 			})
 		window.scrollTo(0, 0)
-	}, [activeClass, pizzaSort, searchValue, currentPage])
-	console.log(searchValue)
+	}, [categoryId, sortType, searchValue, currentPage])
 	return (
 		<div className='container'>
 			<div className='content__top'>
-				<Categories
-					value={activeClass}
-					onClickCategory={i => setActiveClass(i)}
-				/>
-				<Sort value={pizzaSort} setSort={i => setPizzaSort(i)} />
+				<Categories value={categoryId} onClickCategory={onClickCategory} />
+				<Sort />
 			</div>
 			<h2 className='content__title'>All Pizzas</h2>
 			<div className='content__items'>
@@ -50,7 +52,7 @@ const Home = () => {
 					? [...new Array(6)].map((_, index) => <Loader key={index} />)
 					: items.map(obj => <PizzaBlock key={obj.id} {...obj} />)}
 			</div>
-			{activeClass === 0 && (
+			{categoryId === 0 && (
 				<Pagination onChangePage={number => setCurrentPage(number)} />
 			)}
 		</div>
