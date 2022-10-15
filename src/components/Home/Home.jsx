@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
 
 import { MOCK_API_ENDPOINT } from '../../constants'
 import { setCategoryId } from '../../redux/slices/fliterSlice'
@@ -35,12 +36,12 @@ const Home = () => {
 			const category = categoryId > 0 ? `category=${categoryId}` : ''
 			const search = searchValue ? `&search=${searchValue}` : ''
 
-			await fetch(
-				`${MOCK_API_ENDPOINT}/items?page=${currentPage}&limit=4&${category}${search}&sortBy=${sortBy}&order=${order}`
-			)
-				.then(res => res.json())
-				.then(json => {
-					setItems(json)
+			await axios
+				.get(
+					`${MOCK_API_ENDPOINT}/items?page=${currentPage}&limit=4&${category}${search}&sortBy=${sortBy}&order=${order}`
+				)
+				.then(res => {
+					setItems(res.data)
 				})
 				.finally(() => setIsLoading(false))
 		}
@@ -62,8 +63,8 @@ const Home = () => {
 			<div className='content__items'>
 				{isLoading
 					? [...new Array(loadingPizza)].map((_, index) => (
-							<Loader key={index} />
-					  ))
+						<Loader key={index} />
+					))
 					: items.map(obj => <PizzaBlock key={obj.id} {...obj} />)}
 			</div>
 			{categoryId === 0 && (
