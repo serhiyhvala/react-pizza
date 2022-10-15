@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 
 import { MOCK_API_ENDPOINT } from '../../constants'
-import { setCategoryId } from '../../redux/slices/fliterSlice'
+import { setCategoryId, setCurrentPage } from '../../redux/slices/fliterSlice'
 
 import Categories from '../Categories/Categories'
 import Sort from '../Sort/Sort'
@@ -13,7 +13,7 @@ import Pagination from '../Pagination/Pagination'
 import { SearchContext } from '../../App'
 
 const Home = () => {
-	const { categoryId, sort } = useSelector(state => state.filter)
+	const { categoryId, sort, currentPage } = useSelector(state => state.filter)
 	const { sortType } = sort
 	const dispatch = useDispatch()
 	const loadingPizza = 4
@@ -21,7 +21,6 @@ const Home = () => {
 	const { searchValue } = useContext(SearchContext)
 	const [items, setItems] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
-	const [currentPage, setCurrentPage] = useState(1)
 
 	useEffect(() => {
 		window.scrollTo(0, 0)
@@ -53,6 +52,10 @@ const Home = () => {
 		dispatch(setCategoryId(id))
 	}
 
+	const onChangePage = number => {
+		dispatch(setCurrentPage(number))
+	}
+
 	return (
 		<div className='container'>
 			<div className='content__top'>
@@ -63,12 +66,12 @@ const Home = () => {
 			<div className='content__items'>
 				{isLoading
 					? [...new Array(loadingPizza)].map((_, index) => (
-						<Loader key={index} />
-					))
+							<Loader key={index} />
+					  ))
 					: items.map(obj => <PizzaBlock key={obj.id} {...obj} />)}
 			</div>
 			{categoryId === 0 && (
-				<Pagination onChangePage={number => setCurrentPage(number)} />
+				<Pagination currentPage={currentPage} onChangePage={onChangePage} />
 			)}
 		</div>
 	)
