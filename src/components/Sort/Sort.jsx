@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import {setSort} from '../../redux/slices/fliterSlice'
+import { setSort } from '../../redux/slices/fliterSlice'
 
 import sortLabel from '../../assets/img/sortLabel.svg'
 
@@ -42,31 +42,31 @@ const Sort = () => {
     setVisiblePopup(false)
   }
 
-  const togglePopupVisibility = () => setVisiblePopup(!visiblePopup);
+  const togglePopupVisibility = () => setVisiblePopup(!visiblePopup)
 
   return (
-      <div className='sort' onClick={togglePopupVisibility}>
-        <div className='sort__label'>
-          <img src={sortLabel} alt=''/>
-          <b>Sort by:</b>
-          <span onClick={togglePopupVisibility}>{sort.name}</span>
-        </div>
-        {visiblePopup && (
-            <div className='sort__popup'>
-              <ul>
-                {sortList.map((obj, i) => (
-                    <li
-                        onClick={() => onClickSetItem(obj)}
-                        className={sort.name === obj.name ? 'active' : ''}
-                        key={i}
-                    >
-                      {obj.name}
-                    </li>
-                ))}
-              </ul>
-            </div>
-        )}
+    <div className="sort" onClick={togglePopupVisibility}>
+      <div className="sort__label">
+        <img src={sortLabel} alt="" />
+        <b>Sort by:</b>
+        <span onClick={togglePopupVisibility}>{sort.name}</span>
       </div>
+      {visiblePopup && (
+        <div className="sort__popup">
+          <ul>
+            {sortList.map((obj, i) => (
+              <li
+                onClick={() => onClickSetItem(obj)}
+                className={sort.name === obj.name ? 'active' : ''}
+                key={i}
+              >
+                {obj.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
   )
 }
 
