@@ -5,7 +5,7 @@ import { ReactComponent as RemoveCart } from '../../assets/img/cart-remove.svg'
 import { useDispatch } from 'react-redux'
 import { addItems, minusItem, removeItems } from '../../redux/slices/cartSlice'
 
-const CartItem = ({ id, title, price, count, imageUrl, type }) => {
+const CartItem = ({ id, title, price, count, imageUrl, type, size }) => {
   const dispatch = useDispatch()
 
   const onClickPlus = () => {
@@ -28,7 +28,9 @@ const CartItem = ({ id, title, price, count, imageUrl, type }) => {
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
-        <p>{type}, 26 cm.</p>
+        <p>
+          {type}, {size}
+        </p>
       </div>
       <div className="cart__item-count">
         <div
