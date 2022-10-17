@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setSort } from '../../redux/slices/fliterSlice'
@@ -34,6 +34,18 @@ const sortList = [
 
 const Sort = () => {
   const [visiblePopup, setVisiblePopup] = useState(false)
+  const sortRef = useRef()
+  useEffect(() => {
+    const handleClickListener = event => {
+      if (!sortRef.current.contains(event.target)) {
+        setVisiblePopup(false)
+        console.log(1)
+      }
+    }
+    document.body.addEventListener('click', handleClickListener)
+
+    return () => document.body.removeEventListener('click', handleClickListener)
+  }, [])
   const sort = useSelector(state => state.filter.sort)
   const dispatch = useDispatch()
 
@@ -45,7 +57,7 @@ const Sort = () => {
   const togglePopupVisibility = () => setVisiblePopup(!visiblePopup)
 
   return (
-    <div className="sort" onClick={togglePopupVisibility}>
+    <div ref={sortRef} className="sort" onClick={togglePopupVisibility}>
       <div className="sort__label">
         <img src={sortLabel} alt="" />
         <b>Sort by:</b>
