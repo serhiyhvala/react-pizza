@@ -7,6 +7,7 @@ import { ReactComponent as ComeBack } from '../../assets/img/come-back.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItem from '../CartItem/CartItem'
 import { clearItems } from '../../redux/slices/cartSlice'
+import EmptyCart from '../EmptyCart/EmptyCart'
 
 const Cart = () => {
   const { totalPrice, items } = useSelector(state => state.cart)
@@ -16,6 +17,10 @@ const Cart = () => {
     if (window.confirm('Are you sure you want to clear all items?')) {
       dispatch(clearItems())
     }
+  }
+
+  if (!totalCount) {
+    return <EmptyCart />
   }
   return (
     <div className="container container--cart">
