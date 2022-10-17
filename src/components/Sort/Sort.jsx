@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setSort } from '../../redux/slices/fliterSlice'
 
 import sortLabel from '../../assets/img/sortLabel.svg'
+import { useOnClickOutside } from '../Hooks/useOnClickOutside'
 
 const sortList = [
   {
@@ -35,17 +36,7 @@ const sortList = [
 const Sort = () => {
   const [visiblePopup, setVisiblePopup] = useState(false)
   const sortRef = useRef()
-  useEffect(() => {
-    const handleClickListener = event => {
-      if (!sortRef.current.contains(event.target)) {
-        setVisiblePopup(false)
-        console.log(1)
-      }
-    }
-    document.body.addEventListener('click', handleClickListener)
-
-    return () => document.body.removeEventListener('click', handleClickListener)
-  }, [])
+  useOnClickOutside(sortRef, () => setVisiblePopup(false))
   const sort = useSelector(state => state.filter.sort)
   const dispatch = useDispatch()
 
