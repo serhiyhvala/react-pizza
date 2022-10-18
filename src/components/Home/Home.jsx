@@ -34,14 +34,17 @@ const Home = () => {
 			const category = categoryId > 0 ? `category=${categoryId}` : ''
 			const search = searchValue ? `&search=${searchValue}` : ''
 
-			await axios
-				.get(
+			try {
+				const res = await axios.get(
 					`${MOCK_API_ENDPOINT}/items?page=${currentPage}&limit=4&${category}${search}&sortBy=${sortBy}&order=${order}`
 				)
-				.then(res => {
-					setItems(res.data)
-				})
-				.finally(() => setIsLoading(false))
+				setItems(res.data)
+				setIsLoading(false)
+			} catch (error) {
+				console.log(error)
+			} finally {
+				setIsLoading(false)
+			}
 		}
 
 		fetchItems()
