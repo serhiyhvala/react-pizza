@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { SearchContext } from '../../App'
 import { setCategoryId, setCurrentPage } from '../../redux/slices/fliterSlice'
 import { fetchPizzas } from '../../redux/slices/pizzaSlice'
 import Categories from '../Categories/Categories'
@@ -12,13 +11,14 @@ import PizzaBlock from '../PizzaBlock/PizzaBlock'
 import Sort from '../Sort/Sort'
 
 const Home = () => {
-	const { categoryId, sort, currentPage } = useSelector(state => state.filter)
+	const { categoryId, sort, currentPage, searchValue } = useSelector(
+		state => state.filter
+	)
 	const { items, status } = useSelector(state => state.pizza)
 	const { sortType } = sort
 	const dispatch = useDispatch()
 	const loadingPizza = 4
 
-	const { searchValue } = useContext(SearchContext)
 	useEffect(() => {
 		window.scrollTo(0, 0)
 	}, [])
