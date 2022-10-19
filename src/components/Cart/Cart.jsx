@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'
 import { ReactComponent as ClearCart } from '../../assets/img/cart-clear.svg'
 import { ReactComponent as CartLogo } from '../../assets/img/cart.svg'
 import { ReactComponent as ComeBack } from '../../assets/img/come-back.svg'
-import { clearItems } from '../../redux/slices/cartSlice'
+import { clearItems, selectCart } from '../../redux/slices/cartSlice'
 import CartItem from '../CartItem/CartItem'
 import EmptyCart from '../EmptyCart/EmptyCart'
 
 const Cart = () => {
-	const { totalPrice, items } = useSelector(state => state.cart)
+	const { totalPrice, items } = useSelector(selectCart)
 	const dispatch = useDispatch()
 	const totalCount = items.reduce((sum, item) => sum + item.count, 0)
 	const onClickClear = () => {

@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 
 import { ReactComponent as Cart } from '../../assets/img/cart.svg'
 import logo from '../../assets/img/pizza-logo.svg'
+import { selectCart } from '../../redux/slices/cartSlice'
 import Search from '../Search/Search'
 
 const Header = () => {
-	const { items, totalPrice } = useSelector(state => state.cart)
+	const { items, totalPrice } = useSelector(selectCart)
 	const totalCount = items.reduce((sum, item) => sum + item.count, 0)
 	return (
 		<div className='header'>
