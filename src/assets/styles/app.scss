@@ -35,6 +35,14 @@ body {
     margin-bottom: 50px;
   }
 
+  &__waiting {
+    font-weight: 800;
+    font-size: 38px;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
   &__items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

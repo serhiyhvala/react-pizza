@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { setCategoryId, setCurrentPage } from '../../redux/slices/fliterSlice'
 import { fetchPizzas } from '../../redux/slices/pizzaSlice'
@@ -17,7 +18,6 @@ const Home = () => {
 	const { items, status } = useSelector(state => state.pizza)
 	const { sortType } = sort
 	const dispatch = useDispatch()
-	const loadingPizza = 4
 
 	useEffect(() => {
 		window.scrollTo(0, 0)
@@ -51,12 +51,12 @@ const Home = () => {
 	const onChangePage = number => {
 		dispatch(setCurrentPage(number))
 	}
-
-	const loader = [...new Array(loadingPizza)].map((_, index) => (
-		<Loader key={index} />
+	const loader = [...new Array(4)].map((_, index) => <Loader key={index} />)
+	const pizzas = items.map(obj => (
+		<Link key={obj.id} to={`/pizza/${obj.id}`}>
+			<PizzaBlock {...obj} />
+		</Link>
 	))
-
-	const pizzas = items.map(obj => <PizzaBlock key={obj.id} {...obj} />)
 
 	return (
 		<>
