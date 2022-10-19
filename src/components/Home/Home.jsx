@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import { setCategoryId, setCurrentPage } from '../../redux/slices/fliterSlice'
 import { fetchPizzas } from '../../redux/slices/pizzaSlice'
@@ -52,11 +51,7 @@ const Home = () => {
 		dispatch(setCurrentPage(number))
 	}
 	const loader = [...new Array(4)].map((_, index) => <Loader key={index} />)
-	const pizzas = items.map(obj => (
-		<Link key={obj.id} to={`/pizza/${obj.id}`}>
-			<PizzaBlock {...obj} />
-		</Link>
-	))
+	const pizzas = items.map(obj => <PizzaBlock {...obj} />)
 
 	return (
 		<>
