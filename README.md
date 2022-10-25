@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# 🍕 React Pizza v2 🍕
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository details the topic of creating a front-end part of a pizzeria online store using all of the technologies listed below.
+Here is a collection of all the **top** and **relevant** frontend + React topics for 2022, which will be useful for **employment** or custom application development.
+This project is ideal for both novice developers (junior) and pre-middle / middle.
 
-## Available Scripts
+# 🔥 What have I learned?
 
-In the project directory, you can run:
+- Develop a full-fledged front-end application on ReactJS.
+- Create components, pages, sorting, searching, pagination, filtering, popup windows, etc.
+- Interact with the server part, send requests to the backend.
+- Develop page navigation without reloading.
+- Create a global data store for the entire application.
+- Write strongly typed code in TypeScript.
+- Work with LocalStorage to store site settings.
+- Lazy Loading (lazy loading) + debounce (optimization for finding pizzas).
+- Optimize component redraws/renders, code splitting (separating code into separate JS files), what is tree shaking and how to reduce component imports.
+- Make adaptive layout.
+- etc.
 
-### `npm start`
+# 🛠 Technologies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **ReactJS 18**
+- **Redux Toolkit** (data/pizza storage)
+- **React Router v6** (navigation)
+- **Axios + Fetch** (send request to backend)
+- React Hooks (hooks)
+- Prettier (code formatting)
+- CSS-Modules / SCSS (stylization)
+- React Content Loader (skeleton)
+- React Pagination (pagination)
+- Lodash.Debounce
+- Code Splitting, React Loadable, useWhyDidYouUpdate
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🚀 Learn more about technologies
 
-### `npm test`
+- **[Redux Toolkit](https://redux-toolkit.js.org/)** - using this library, we will be able to create a global data store for our application, thus, a more convenient way to exchange information between different components our application. This library is being actively implemented in all large and small react projects for 2021-2022.
+- **[React Router v6](https://reactrouter.com/docs/en/v6/getting-started/overview)** - will allow us to create navigation through our site without page reloads. You probably noticed that the VK or Instagram site, when you navigate through different sections, does not reload the entire page, but only a certain part of the site. It is this feature that we will implement in our application using React Router.
+- **[Axios](https://github.com/axios/axios)** - will help us interact with the server side. Send data to the server or receive it, if necessary, from the server already in our front-end application.
+- **[React Hooks](https://ru.reactjs.org/docs/hooks-intro.html)** is a set of ready-made functions inside the React library for solving various tasks, for example, storing data, determining the first display of the application , function optimizations, etc.
+- **[Prettier](https://prettier.io/)** - our code should not only be well-written, but also **beautiful**. With Prettier, our code will automatically align inside our code editor, making it more readable.
+- **[SCSS](https://sass-scss.ru/)** is the same CSS, but with more powerful features, functions, variables, loops (yes, Carl, loops in CSS) and a bunch of other cool solutions.
+- **[CSS-Modules](https://github.com/css-modules/css-modules)** - we will use SCSS along with CSS modules. In fact, you don't have to learn anything new. You will write the same styles, but in separate files (css modules), thereby encapsulating your CSS classes.
+- [**Lodash**](https://lodash.com/docs) - a set of ready-made JS functions for a huge number of different tasks.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 🗄Materials
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [**pizza.json**](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/36ad4e93-800e-451b-9831-ae6abe1b28ef/pizzas.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221011%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221011T060501Z&X-Amz-Expires=86400&X-Amz-Signature=a34fb7b7f1490373ddf1b05650b4206066d65394ddf7eb9855eac4dbae79c3c3&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22pizzas.json%22&x-id=GetObject)
+- **Data storage site - [https://mockapi.io/](https://mockapi.io/)**
